@@ -1,0 +1,20 @@
+﻿@model FamilyLoan.Endpoints.WebUI.VIewModels.Customers.DetailsCustomerViewModel
+    @{
+    
+    ViewData["Title"] = "جزییات ";
+    }
+
+    <div id="CustomerDetails">
+
+
+        <table class="table table-striped">
+            <tr>
+                <th>شماره کارت</th>
+                <th>توضیحات</th>
+            </tr>
+            <tr>
+                <td>@Model.CardNo</td>
+                <td>@Model.Description</td>
+            </tr>
+        </table>
+    </div>

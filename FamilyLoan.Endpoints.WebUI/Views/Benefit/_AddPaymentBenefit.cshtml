@@ -1,0 +1,90 @@
+﻿@model AddPaymentBenefitViewModel
+@{
+
+    ViewData["Title"] = "افزودن تراکنش";
+}
+
+
+
+
+<form asp-action="AddPaymentByBenefit" class="login-form" id="frmAddPaymentBenefit" method="post">
+    <input type="hidden" asp-for="BenefitId" />
+
+    <div class="form-group ">
+        <label asp-for="PaymentAmount"></label>
+        <input asp-for="PaymentAmount" class="form-control rounded-left amounts" value="" placeholder="مبلغ را وارد کنید">
+    </div>
+
+    <div class="form-group rounded-left">
+        <label asp-for="PaymentDate"></label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text cursor-pointer " id="spanDateAmountBenefit">تاریخ</span>
+            </div>
+            <input type="text" class="form-control" asp-for="PaymentDate" value="1400/01/01">
+
+        </div>
+
+
+    </div>
+    <div class="form-group col-sm-12 rounded-left">
+        <label asp-for="Description"></label>
+        <textarea class="form-control" rows="2" asp-for="Description"></textarea>
+    </div>
+    <div class="form-group">
+        <img src="~/css/ajax-loader.gif" id="spinner" />
+        <button type="submit" class="form-control btn btn-success rounded submit px-3" id="btnsavebenefit">ذخیره</button>
+    </div>
+</form>
+
+
+<script>
+    $(document).ready(function () {
+        $('#spanDateAmountBenefit').MdPersianDateTimePicker({
+            targetTextSelector: '#PaymentDate'
+
+        });
+        $('#spinner').hide();
+    });
+
+    $("#frmAddPaymentBenefit").on('submit', function (e) {
+        e.preventDefault();
+
+        $('#btnsavebenefit').hide();
+        $('#spinner').show();
+
+        $.ajax({
+            type: 'POST',
+            url: "/Benefit/AddPaymentByBenefit",
+            data: $('#frmAddPaymentBenefit').serialize(),
+            success: function (response) {
+                
+                if (response.status) {
+
+
+                    $("#frm-benefit-transaction").submit();
+
+                }
+                else {
+                    alert(response.message);
+                }
+
+
+            },
+
+            error: function (xhr, status, error) {
+
+            }
+
+        }).always(function () {
+
+
+            $('#btnsavebenefit').show();
+            $('#spinner').hide();
+            $('#frmAddPaymentBenefit').find("input[type=text], textarea").val("");
+
+
+        });
+
+    });
+</script>

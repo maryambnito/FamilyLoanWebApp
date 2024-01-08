@@ -1,0 +1,130 @@
+﻿@model HomeViewModel
+
+@{
+
+    ViewData["Title"] = "صندوق امداد";
+}
+@section head
+{
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-6 col-lg-3">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height overflow-hidden shadow">
+                <div class="iq-card-body">
+                    <div class="text-center mb-2">
+                        <div class="rounded-circle iq-card-icon iq-bg-primary bright"><i class="ri-user-line"></i></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="text-center">
+                        <h2 class="mb-0"><label class="counter">@Model.CustomerCount</label><span>شخص</span></h2>
+                        <h6 class="mb-2">تعداد اعضا</h6>
+                        <p class="mb-0 text-secondary line-height"><i class="ri-arrow-up-line text-success mr-1"></i><span class="text-success"></span>@Model.CustomerCount</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height overflow-hidden shadow">
+                <div class="iq-card-body">
+
+                    <div class="clearfix"></div>
+                    <div class="text-center">
+
+
+                        <img src="~/images/Home/character.jpg" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6 col-lg-3">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height overflow-hidden shadow">
+                <div class="iq-card-body">
+                    <div class="text-center mb-2">
+                        <div class="rounded-circle iq-card-icon iq-bg-danger bright"><i class="ri-money-euro-circle-line"></i></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="text-center">
+                        <h2 class="mb-0"><label class="counter">@Model.AccountCount</label><span>عدد</span></h2>
+                        <h6 class="mb-2">تعداد حساب ها </h6>
+                        <p class="mb-0 text-secondary line-height"><i class="ri-arrow-up-line text-success mr-1"></i><span class="text-success"></span> @Model.AccountCount</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height overflow-hidden shadow">
+                <div class="iq-card-body">
+                    <div class="text-center">
+
+
+                        <img src="~/images/Home/account.jpg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-3">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height overflow-hidden shadow">
+                <div class="iq-card-body">
+                    <div class="text-center mb-2">
+                        <div class="rounded-circle iq-card-icon iq-bg-success bright"><i class="ri-money-dollar-circle-line"></i></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="text-center">
+                        <h2 class="mb-0"><span class="counter"> @Model.LoanCount</span><span>عدد</span></h2>
+                        <h6 class="mb-2">تعداد وام ها</h6>
+                        <p class="mb-0 text-secondary line-height"><i class="ri-arrow-up-line text-success mr-1"></i><span class="text-success"></span> @Model.LoanCount</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 ">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height overflow-hidden shadow">
+                <div class="iq-card-body">
+                    <div class="text-center">
+
+                        <img src="~/images/Home/loan.jpg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height overflow-hidden shadow">
+                <div class="iq-card-body">
+                    <div class="text-center mb-2">
+                        <div class="rounded-circle iq-card-icon iq-bg-success bright"><i class="ri-time-line"></i></div>
+                    </div>
+                    <div class="text-center">
+                        <h3>@Model.DateTime.ChangeToPersianDateTime()</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-6 col-lg-3">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height overflow-hidden shadow">
+                <div class="iq-card-body">
+                    <div class="text-center">
+
+                        <img src="~/images/Home/dateTime.jpg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery-validation-unobtrusive@3.2.12",
+      "destination": "wwwroot/libs/jquery-validation-unobtrusive/"
+    },
+    {
+      "library": "jquery-validate@1.19.3",
+      "destination": "wwwroot/libs/jquery-validate/"
+    },
+    {
+      "library": "limonte-sweetalert2@11.1.2",
+      "destination": "wwwroot/libs/limonte-sweetalert2/"
+    },
+    {
+      "library": "jquery-ajaxy@1.6.1",
+      "destination": "wwwroot/jquery-ajaxy/"
+    }
+  ]
+}

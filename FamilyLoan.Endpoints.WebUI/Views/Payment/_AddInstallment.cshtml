@@ -1,0 +1,101 @@
+﻿@model AddInstallmentViewModel
+
+@{
+
+    ViewData["Title"] = "افزودن قسط";
+}
+
+
+
+
+<form action="AddInstallment" method="post" id="frmAddInstallment" class="login-form">
+    <input type="hidden" asp-for="LoanId" />
+
+    <div class="form-group ">
+        <label asp-for="InstallmentAmount"></label>
+        <input asp-for="InstallmentAmount" class="form-control rounded-left amounts" value="" placeholder="مبلغ را وارد کنید">
+        <span asp-validation-for="InstallmentAmount" id="instamount" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group rounded-left">
+        <label asp-for="InstallmentDate"></label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text cursor-pointer " id="spanDateInstallment">تاریخ</span>
+            </div>
+            <input type="text" class="form-control" asp-for="InstallmentDate" value="1400/01/01">
+            <span asp-validation-for="InstallmentDate" id="insdate" class="text-danger"></span>
+
+        </div>
+
+
+    </div>
+    <div class="form-group col-sm-12 rounded-left">
+        <label asp-for="Description"></label>
+        <textarea class="form-control" rows="2" asp-for="Description"></textarea>
+    </div>
+    <div class="form-group">
+        <img src="~/css/ajax-loader.gif" id="spinner" />
+        <button type="submit" class="form-control btn btn-success rounded submit px-3" id="btnsaveInstallment">ذخیره
+        </button>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        $('#spanDateInstallment').MdPersianDateTimePicker({
+            targetTextSelector: '#InstallmentDate'
+
+        });
+        $('#spinner').hide();
+    });
+
+    $("#frmAddInstallment").on('submit', function (e) {
+        e.preventDefault();
+
+        $('#btnsaveInstallment').hide();
+        $('#spinner').show();
+
+        $.ajax({
+            type: 'POST',
+            url: "/Payment/AddInstallment",
+            data: $('#frmAddInstallment').serialize(),
+            success: function (response) {
+                if (response.status) {
+
+                    $("#instamount").html("");
+
+                    $("#insdate").html("");
+                    $("#InstallmentAmount").val("");
+                  
+                    $("#frm-loan-installment").submit();
+
+                }
+                else {
+                  
+
+                    $("#instamount").html("مبلغ را وارد کنید");
+                   
+                    $("#insdate").html("تاریخ را وارد کنید");
+                }
+
+
+            },
+
+            error: function (xhr, status, error) {
+
+            }
+
+        }).always(function () {
+
+
+            $('#btnsaveInstallment').show();
+            $('#spinner').hide();
+            $('#frmAddInstallment').find("input[type=text], textarea").val("");
+
+
+        });
+
+    });
+</script>
+

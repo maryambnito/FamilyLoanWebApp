@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html  dir="rtl">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title </title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/images/favicon.ico" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!-- Typography CSS -->
+    <link rel="stylesheet" href="~/css/typography.css">
+    <link rel="stylesheet" href="~/libs/limonte-sweetalert2/sweetalert2.min.css">
+    <!-- Style CSS -->
+    <link href="~/css/style.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/style-new.css" rel="stylesheet" asp-append-version="true" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/css/responsive.css">
+    <link href="~/libs/MD.BootstrapPersianDateTimePicker-master-bs4/dist/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
+
+
+    @RenderSection("head", false)
+
+
+</head>
+<body>
+    <!-- loader Start -->
+    <div id="loading">
+
+    </div>
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <div class="iq-sidebar">
+            <partial name="_Sidebar" />
+
+
+        </div>
+        <!-- TOP Nav Bar -->
+        <div class="iq-top-navbar">
+            <partial name="_Topbar" />
+
+        </div>
+        <!-- TOP Nav Bar END -->
+        <!-- Page Content  -->
+        <div id="content-page" class="content-page">
+            @RenderBody()
+
+        </div>
+    </div>
+    <!-- Wrapper END -->
+    <!-- Footer -->
+    <partial name="_Footer" />
+
+    <!-- Footer END -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- Appear JavaScript -->
+    <script src="~/js/jquery.appear.js"></script>
+    <!-- Countdown JavaScript -->
+    <script src="~/js/countdown.min.js"></script>
+    <!-- Counterup JavaScript -->
+    <script src="~/js/waypoints.min.js"></script>
+    <script src="~/js/jquery.counterup.min.js"></script>
+    <!-- Wow JavaScript -->
+    <script src="~/js/wow.min.js"></script>
+    <!-- Apexcharts JavaScript -->
+    <script src="~/js/apexcharts.js"></script>
+    <!-- Slick JavaScript -->
+    <script src="~/js/slick.min.js"></script>
+    <!-- Select2 JavaScript -->
+    <script src="~/js/select2.min.js"></script>
+    <!-- Owl Carousel JavaScript -->
+    <script src="~/js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup JavaScript -->
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <!-- Smooth Scrollbar JavaScript -->
+    <script src="~/js/smooth-scrollbar.js"></script>
+    <!-- lottie JavaScript -->
+    <script src="~/js/lottie.js"></script>
+    <!-- core JavaScript -->
+    <script src="~/js/core.js"></script>
+    <!-- charts JavaScript -->
+    <script src="~/js/charts.js"></script>
+    <!-- animated JavaScript -->
+    <script src="~/js/animated.js"></script>
+    <!-- Chart Custom JavaScript -->
+    <script src="~/js/chart-custom.js"></script>
+    <script src="~/libs/limonte-sweetalert2/sweetalert2.all.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="~/js/custom.js"></script>
+    <script src="~/js/JS.js"></script>
+    <script src="~/libs/MD.BootstrapPersianDateTimePicker-master-bs4/dist/jquery.md.bootstrap.datetimepicker.js"></script>
+    @* <script src="~/sweetalert2.all.min.js"></script>*@
+
+    @RenderSection("Scripts", false)
+</body>
+</html>

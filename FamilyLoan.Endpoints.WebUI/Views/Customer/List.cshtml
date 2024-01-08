@@ -1,0 +1,104 @@
+﻿@model PagedData<CustomerDTO>
+@{
+
+    ViewData["Title"] = "لیست اعضا";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="iq-card">
+            <div class="iq-card-header d-flex justify-content-between">
+                <div class="iq-header-title">
+                    <h4 class="card-title">لیست اعضا</h4>
+                </div>
+            </div>
+            <div class="iq-card-body">
+                <div class="table-responsive">
+                    <div class="row justify-content-between">
+                        <div class="col-sm-12 col-md-6">
+                            <div id="user_list_datatable_info" class="dataTables_filter">
+                                <form class="mr-3 position-relative" asp-action="List" asp-controller="Customer" method="get">
+                                    <div class="form-group mb-0 btn-group">
+                                        <input type="search" class="form-control" name="search" id="exampleInputSearch" placeholder="جستجو" aria-controls="user-list-table">
+                                         <button class="btn btn-info"  ><i class="fa fa-search"> </i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <table id="user-list-table" class="table table-striped table-bordered mt-4" role="grid" aria-describedby="user-list-page-info">
+                        <thead class="thead-dark">
+                            <tr>
+                               
+                                <th>نام</th>
+                                <th>نام خانوادگی</th>
+                                <th>شماره تماس</th>
+                                <th>کد ملی</th>
+                                <th>عملیات</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.QueryResult)
+                            {
+                                <tr>
+                                    <td>@item.FirstName</td>
+                                    <td>@item.LastName </td>
+                                    <td>@item.Mobile</td>
+                                    <td>@item.NationalCode</td>
+
+                                    <td>
+                                        <a  asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-outline-danger mb-3">
+                                        <i class="ri-delete-bin-2-fill pr-0 m-0"></i></a>
+                                        <a  asp-action="Update" asp-route-Id="@item.Id" class="btn btn-outline-warning mb-3">
+                                        <i class="ri-edit-2-fill pr-0 m-0"></i></a>
+                                        <a onclick="showModal(@item.Id, 'جزییات')" data-toggle="modal" asp-route-Id="@item.Id" data-target="#exampleModal" class="btn btn-outline-info mb-3">
+                                            <i class="ri-alipay-fill  pr-0 m-0"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row justify-content-between mt-3">
+                    <div id="user-list-page-info" class="col-md-6">
+                        <partial name="_Paging" />
+                    </div>
+                    <div class="col-md-6">
+                        <nav aria-label="Page navigation example">
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">جزییات مخاطب</h5>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">بستن</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+
+    <script src="~/Controllers/Customers/CustomerListJS.js"></script>
+}
+

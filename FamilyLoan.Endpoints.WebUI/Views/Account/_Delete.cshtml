@@ -1,0 +1,69 @@
+﻿@model DeleteAccountViewModel
+
+@{
+
+    ViewData["Title"] = "حذف حساب";
+}
+
+<div class="form-group ">
+    @if (!Model.AllowDelete)
+    {
+
+        <div class="form-group">
+            <b><label asp-for="Message"></label> :</b> <div class="alert alert-danger">@Model.Message</div>
+        </div>
+    }
+    @if (Model.AllowDelete)
+    {
+        <form action="DeleteConfirm" method="post" id="frmDeleleAccount" class="login-form">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group ">
+                <span class=" rounded-right  text-danger">آیا از حذف  حساب اطمینان دارید؟</span>
+            </div>
+
+            <div class="form-group ">
+                <div class="align-content-center">
+
+                    <img src="~/css/ajax-loader.gif" id="spinner" />
+                </div>
+                <button onclick="deleteaccount(@Model.Id)" class="form-control btn btn-danger
+                        rounded submit px-3" id="btnDeleteAccount"><p>حذف</p></button>
+            </div>
+        </form>
+
+    }
+  
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#spinner').hide();
+    });
+
+
+    function deleteaccount(Id) {
+
+        $('#btnDeleteAccount').hide();
+        $('#spinner').show();
+
+
+
+        $.post("DeleteConfirm/" + Id).done(function (data) {
+
+            location.reload();
+            swalWithBootstrapButtons.fire(
+                'حذف !',
+                'اطلاعات حذف شد.',
+                'موفقیت'
+            )
+        });
+
+
+
+
+    };
+
+</script>

@@ -1,0 +1,182 @@
+﻿@model CreatePaymentBenefitViewModel
+@{
+    ViewData["Title"] = "تراکنش سودها";
+}
+@section head
+{
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="iq-card">
+            <div class="iq-card-body p-0">
+                <div class="iq-edit-list">
+                    <ul class="iq-edit-profile d-flex nav nav-pills transactionUl">
+                        <li class="col-md-12 p-0">
+                            <a class="nav-link active" data-toggle="pill" href="#Benefit-information">
+                                تراکنش های سود
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="iq-edit-list-data">
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="Benefit-information" role="tabpanel">
+                    <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title"> تراکنش های سود</h4>
+                            </div>
+                        </div>
+                        <div class="iq-card-body">
+                            <form id="frm-benefit-transaction">
+                                <div class=" row align-items-center">
+                                    @{ List<int> selectedBenefit = (List<int>)ViewBag.SelectedItem; }
+
+                                    <div class="form-group col-sm-12">
+                                        <label asp-for="BenefitDTO"></label>
+                                        <select class="form-control " asp-for="BenefitId">
+                                          
+                                          
+                                                    <option selected value="@Model.BenefitId">@Model.BenefitDTO.Description</option>
+                                               
+                                        
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-sm-6">
+                                        <label>از تاریخ</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text cursor-pointer " id="spanFromDate">تاریخ</span>
+                                            </div>
+                                            <input type="text" asp-for="FromDate" class="form-control">
+
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="form-group col-sm-6">
+                                        <label>تا تاریخ</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text cursor-pointer " id="spanToDate">تاریخ</span>
+                                            </div>
+                                            <input type="text" asp-for="ToDate" class="form-control">
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                <div id="btndiv">
+
+
+                                    <button id="addbenefitbtn" onclick="showbenefitModal(@Model.BenefitId, 'افزودن سود')"
+                                            class="btn btn-success mb-3" data-toggle="modal" asp-route-Id="@Model.BenefitId"
+                                            data-target="#AddBenefitModal">
+                                        <i class="ri-save-2-fill ml-2"></i>افزودن
+                                    </button>
+
+
+
+
+                                    <button type="submit" class="btn btn-info mb-3 ml-0">
+                                        <i class="ri-search-2-fill ml-2"></i>جستجو
+                                    </button>
+
+                                </div>
+                                <div class="col-md-12" id="totalDivs">
+                                    <div class="iq-card py-2 px-3">
+                                        <div class="row">
+                                            <div class="align-self-center d-flex col-lg-8 col-6">
+
+                                                <h4>جمع کل</h4>
+
+                                            </div>
+                                            <div class="col-lg-4 col-6">
+                                                <div class="d-flex justify-content-between">
+                                                    <div id="sort-by" class="iq-algolia-sort">
+                                                        <div class="ais-SortBy iq-algolia-sort  " style="display:inline-flex">
+                                                            <h6 readonly id="totalBenefitAmount"></h6>
+                                                            <h6 readonly>ریال</h6>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="BenefitListTbl">
+
+
+
+
+
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade " id="AddBenefitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header align-content-start">
+                <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="ion-ios-close"></span>
+                </button>
+                <h6 class="text-center mb-4">افزودن تراکنش</h6>
+            </div>
+            <div class="modal-body p-4 p-md-5">
+                <div id='ModalContent'>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts
+{
+
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+        <script src="~/Controllers/Benefits/BenefitJs.js"></script>
+    
+}

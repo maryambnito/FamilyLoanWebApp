@@ -1,0 +1,53 @@
+﻿
+@model DeleteMoeinViewModel
+
+@{
+
+    ViewData["Title"] = "حذف ";
+}
+
+<form action="DeleteMoein" method="post">
+
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group ">
+        <span class=" rounded-right  text-danger">آیا از حذف اطمینان دارید؟</span>
+    </div>
+
+    <div class="form-group ">
+        <div class="align-content-center">
+
+            <img src="~/css/ajax-loader.gif" id="spinner" />
+        </div>
+        <button type="submit"  class="form-control btn btn-danger rounded submit px-3" id="btnDelete"><p>حذف</p></button>
+    </div>
+</form>
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#spinner').hide();
+    });
+
+
+    //function delmoein(Id) {
+    //onclick="delmoein(@Model.Id)"
+    //    $('#btnDelete').hide();
+    //    $('#spinner').show();
+
+
+    //    $.post("/Moein/DeleteMoein?id=" + Id).done(function (data) {
+
+    //        $('#DeleleMoeinModal').modal('toggle');
+
+    //        });
+
+
+
+
+    //    };
+
+
+</script>

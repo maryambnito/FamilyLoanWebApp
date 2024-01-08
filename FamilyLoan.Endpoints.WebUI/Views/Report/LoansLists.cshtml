@@ -1,0 +1,153 @@
+﻿@model LoansListsViewModel
+@{
+    ViewData["Title"] = "لیست وام ها";
+}
+@section head
+{
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="iq-edit-list-data">
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="Account-information" role="tabpanel">
+                    <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title">لیست وام ها</h4>
+                            </div>
+                        </div>
+                        <div class="iq-card-body">
+                            <form id="frmLoanReport">
+                                @{ List<int> selectedloanstate = (List<int>)ViewBag.SelectedItem; }
+                                @{ List<int> selectedCustomer = (List<int>)ViewBag.SelectedItem; }
+
+                                <div class=" row align-items-center">
+                                    <div class="form-group col-sm-6">
+                                        <select class="form-control "  asp-for="Loanstate">
+                                            <option selected=""> جستجو بر اساس وضعیت وام</option>
+
+                                            @foreach (var item in Model.LoanStates)
+                                            {
+                                                if (ViewBag.SelectedItem != null && selectedloanstate.Contains(((int)item.Key)))
+                                                {
+                                                    <option value="@item.Key">@item.Value</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.Key">@item.Value</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-sm-6">
+                                      
+                                           
+                                            <select class="form-control " asp-for="CustomerId">
+                                                <option selected="">جستجو بر اساس نام مشتری </option>
+                                                @foreach (var item in Model.CustomerList)
+                                                {
+                                                    if (ViewBag.SelectedItem != null && selectedCustomer.Contains(item.Id))
+                                                    {
+                                                        <option selected value="@item.Id">@item.FirstName -@item.LastName</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.Id">@item.FirstName -@item.LastName</option>
+                                                    }
+                                                }
+
+                                            </select>
+                                        
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>از تاریخ</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text cursor-pointer " id="spanDateFromLoan">تاریخ</span>
+                                            </div>
+                                            <input type="text" asp-for="FromDate" class="form-control">
+
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="form-group col-sm-6">
+                                        <label>تا تاریخ</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text cursor-pointer " id="spanDateToLoan">تاریخ</span>
+                                            </div>
+                                            <input type="text" asp-for="ToDate" class="form-control">
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                <div id="btndiv">
+
+                                    <button type="submit" class="btn btn-info mb-3 ml-0">
+                                        <i class="ri-search-2-fill ml-2"></i>جستجو
+                                    </button>
+
+                                </div>
+                                <div class="col-md-12" id="totalDivs">
+                                    <div class="iq-card py-2 px-3">
+                                        <div class="row">
+                                            <div class="align-self-center d-flex col-lg-8 col-6">
+
+                                                <h4>جمع کل</h4>
+
+                                            </div>
+                                            <div class="col-lg-4 col-6">
+                                                <div class="d-flex justify-content-between">
+                                                    <div id="sort-by" class="iq-algolia-sort">
+                                                        <div class="ais-SortBy iq-algolia-sort  " style="display:inline-flex">
+                                                            <h6 readonly id="totalAmount"></h6>
+                                                            <h6 readonly>ریال</h6>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="LoanListTbl">
+
+
+
+
+
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="~/Controllers/Reports/LoanListsJs.js"></script>
+
+}

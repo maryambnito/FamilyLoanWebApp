@@ -1,0 +1,40 @@
+﻿@model List<LoanListItemDTO>
+
+<table class="table table-striped table-bordered mt-4" role="grid" aria-describedby="user-list-page-info">
+    <thead class="thead-dark">
+        <tr>
+
+            <th id="datetimeth">  تاریخ وام</th>
+            <th> نام مشتری</th>
+            <th> مبلغ وام </th>
+            <th> مانده وام </th>
+            <th> شماره وام </th>
+            <th> وضعیت وام </th>
+
+
+           
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.LoanDateStart</td>
+                <td>@item.FullName</td>
+                <td class="loanamount">@item.LoanAmount.SeparatorNum()</td>
+                <td class="loanamount">@item.RemainingLoan.SeparatorNum()</td>
+                <td>@item.LoanNumber</td>
+                <td>@item.LoanState.GetDescription()</td>
+
+
+
+
+
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>

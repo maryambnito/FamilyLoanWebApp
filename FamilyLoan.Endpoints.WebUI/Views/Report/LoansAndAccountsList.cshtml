@@ -1,0 +1,73 @@
+﻿@model List<MoeinKolReportDTO>
+@{
+    ViewData["Title"] = "لیست مانده حساب ها";
+}
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="iq-card">
+            <div class="iq-card-header d-flex justify-content-between">
+                <div class="iq-header-title">
+                    <h4 class="card-title">لیست مانده حساب ها</h4>
+                </div>
+            </div>
+            <div class="iq-card-body">
+                <div class="table-responsive">
+
+                    <div id="Accounts-list-table">
+                        <table class="table table-striped table-bordered mt-4 table-hover" role="grid" aria-describedby="user-list-page-info">
+                            <thead class="thead-dark">
+                                <tr>
+
+                                    
+                                    <th> نام مشتری</th>
+                                    <th>نام خانوادگی مشتری</th>
+                                    <th>شماره حساب</th>
+                                    <th> مانده حساب</th>
+                                   
+                                    <th> شماره وام</th>
+                                    <th> مانده وام</th>
+                                    
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.FirstName </td>
+                                        <td>
+                                            @item.LastName
+                                       </td>
+                                        <td>
+                                           @item.AccountNO
+                                        </td>
+                                       <td class="amounts">
+                                          @item.sumpayments.SeparatorNum()
+                                       </td>
+                                        <td>
+                                            @item.LoanNumber
+                                        </td>
+                                        <td class="loanamount">
+                                            @item.RemainingLoan.SeparatorNum()
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    
+   
+
+}

@@ -1,0 +1,82 @@
+﻿@model CreateAccountGetViewModel
+@{
+
+    ViewData["Title"] = "افزودن حساب ";
+}
+@section head
+{
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+}
+<div class="iq-card">
+
+    <div class="iq-card-header d-flex justify-content-between">
+        <div class="iq-header-title">
+            <h4 class="card-title">افزودن حساب جدید</h4>
+        </div>
+    </div>
+    <div class="iq-card-body">
+
+        <form asp-action="Add" asp-controller="Account" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mr-3"></div>
+
+
+
+            <div class="form-group">
+                <label asp-for="CreateAccountDate"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text cursor-pointer " id="spanDateAmount">تاریخ</span>
+                    </div>
+                    <input type="text" class="form-control" asp-for="CreateAccountDate" value="1400/01/01">
+                    <span asp-validation-for="CreateAccountDate" class="text-danger mr-3"></span>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Description">توضیحات</label>
+                <textarea class="form-control" rows="5" asp-for="Description"></textarea>
+            </div>
+            @{ List<int> selectedCustomer = (List<int>)ViewBag.SelectedItem; }
+
+        <div class="form-group">
+            <label asp-for="CustomerForDisplay"></label>
+            <select class="form-control select2" asp-for="CustomerId">
+                <option selected="">لطفا مشتری را انتخاب کنید</option>
+                @foreach (var item in Model.CustomerForDisplay)
+                {
+                    if (ViewBag.SelectedItem != null && selectedCustomer.Contains(item.Id))
+                    {
+                        <option selected value="@item.Id">@item.FirstName - @item.LastName</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">@item.FirstName -@item.LastName</option>
+                    }
+                }
+
+            </select>
+            <span asp-validation-for="CustomerId" class="text-danger mr-3"></span>
+
+        </div>
+
+            <button type="submit" class="btn btn-success mb-3 ml-0 mb-2" ><i class="ri-save-fill ml-2"></i>افزودن</button>
+            <button  asp-controller="Account" asp-action="List" class="btn btn-secondary mb-3"><i class="ri-refresh-fill ml-2"></i>انصراف</button>
+           
+        </form>
+    </div>
+</div>
+
+
+@section scripts
+{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <script src="~/Controllers/Accounts/AccountJs.js"></script>
+
+}

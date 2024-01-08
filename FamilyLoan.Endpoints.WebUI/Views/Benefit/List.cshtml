@@ -1,0 +1,115 @@
+﻿@model BenefitDTO
+@{
+    ViewData["Title"] = " حساب  سود";
+}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                    <div class="iq-header-title">
+                        <h4 class="card-title">حساب  سود</h4>
+                    </div>
+                </div>
+                <div class="iq-card-body">
+                    <div class="new-user-info">
+                        <form class="mr-3 position-relative" method="get" asp-controller="Benefit" asp-action="List" id="frmBenefitlist">
+                            @if (Model is null)
+                            {
+                                <button class="btn btn-success mb-3 ml-0 mb-2" asp-action="Add" id="addbtn">
+                                    <i class="ri-heart-fill ml-2"></i>
+                                </button>
+                            }
+
+                            <input type="hidden" asp-for="Id" />
+                            <div class="row">
+                                <input hidden asp-route-Id="@Model.Id" id="modelid" />
+                                <div class="form-group col-md-12">
+                                    <label asp-for="Description">توضیحات</label>
+                                    <textarea class="form-control" placeholder="توضیحات" rows="3" asp-for="Description" readonly></textarea>
+
+                                </div>
+
+                                <hr />
+
+
+
+
+
+                            </div>
+
+                            <button type="submit" class="btn btn-warning mb-3"><i class="ri-edit-2-fill ml-2"></i>ویرایش</button>
+                            <a asp-action="Delete" asp-route-Id="@Model.Id" class="btn btn-danger mb-3" id="btndelete"><i class="ri-delete-bin-2-fill ml-2"></i>حذف</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade " id="updateBenefitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="text-center mb-4"> ویرایش اطلاعات حساب واریز سود</h6>
+                <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="ion-ios-close"></span>
+                </button>
+
+            </div>
+            <div class="modal-body p-4 p-md-5">
+                <div id='myupdateModalContent'>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+
+    <script>
+
+
+        $("#frmBenefitlist").on('submit', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: 'Get',
+                url: "/Benefit/Update",
+                data: $('#frmBenefitlist').serialize(),
+                success: function (response) {
+
+                    $('#myupdateModalContent').html(response);
+
+
+                    $('#updateBenefitModal').modal();
+
+                },
+
+                error: function (xhr, status, error) {
+                    console.log('خطا در نمایش لیست تراکنش ها');
+
+                }
+
+            });
+
+
+
+        });
+
+
+    </script>
+
+}
+

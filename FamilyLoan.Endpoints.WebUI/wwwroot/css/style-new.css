@@ -1,0 +1,107 @@
+body {
+    text-align: right;
+}
+.ml-auto, .mx-auto {
+    margin-right: auto !important;
+}
+
+@media (max-width: 1299px) {
+    .content-page, body.sidebar-main .content-page {
+        margin-right: 0 !important
+    }
+}
+
+@media (max-width: 1299px) {
+    .iq-footer, body.sidebar-main .iq-footer {
+        margin-right: 0 !important
+    }
+}
+
+@media (max-width: 1299px) {
+    .iq-sidebar-logo a span {
+        display: none
+    }
+}
+
+@media (max-width: 1299px) {
+    .iq-sidebar {
+        display: inline-block;
+        z-index: 99;
+        right: -260px !important;
+    }
+}
+
+@media (max-width: 1299px) {
+    body.sidebar-main .iq-sidebar {
+        width: 260px;
+        right: 0 !important;
+    }
+}
+
+div .transactionUl{
+    padding-right:inherit !important;
+}
+.iq-card-body #frm-add-transaction #btndiv{
+
+    text-align:center;
+}
+.btn {
+    font-size: 14px;
+    font-family: IRANSans,'Now', sans-serif;
+}
+
+.btn-group > .btn-group:not(:first-child) > .btn, .btn-group > .btn:not(:first-child) {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+.modal-header .close {
+    padding: 1px !important;
+     margin: 0 !important;
+
+ 
+}
+.modal-header {
+    background-color: rgba(241, 87, 115, 1) !important;
+}
+#btndiv, .showremainingbtn {
+    text-align: center;
+}
+#PaymentAccountListTbl, #BenefitListTbl, #Accounts-list-table,#LoanListTbl {
+    height: 400px;
+    overflow-y: scroll;
+}
+table tr .loanamount{
+    direction:ltr;
+    color:red;
+    text-align:left;
+}
+#remainingloan {
+    direction: ltr;
+    color: red;
+    text-align: left;
+}
+table tr .amounts {
+    direction: ltr;
+    text-align: left;
+}
+.amounts, #totalAmount, #totalInstallment, #totalBenefitAmount {
+    direction: ltr;
+    text-align: left;
+}
+.shadow {
+    box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+}
+.bright {
+    animation: shadow-pulse 1s infinite;
+}
+#datetimeth{
+    width:20%;
+}
+#trmaster {
+    font-weight: bold;
+    font-size:large;
+}
+#textbold {
+    font-weight: bold;
+    font-weight:normal;
+}

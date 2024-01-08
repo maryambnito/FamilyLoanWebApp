@@ -1,0 +1,95 @@
+﻿@model AddPaymentViewModel
+
+@{
+
+    ViewData["Title"] = "افزودن تراکنش";
+}
+
+
+
+
+<form action="AddPaymentAccount" method="post" id="frmAddPaymentAccount" class="login-form">
+    <input type="hidden" asp-for="AccountId" />
+
+    <div class="form-group ">
+        <label asp-for="PaymentAmount"></label>
+        <input asp-for="PaymentAmount" class="form-control rounded-left amounts" value="" placeholder="مبلغ را وارد کنید">
+        <span asp-validation-for="PaymentAmount" id="amount" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group rounded-left">
+        <label asp-for="PaymentDate"></label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text cursor-pointer " id="spanDateAccount">تاریخ</span>
+            </div>
+            <input type="text" class="form-control" asp-for="PaymentDate" value="1400/01/01">
+        <span asp-validation-for="PaymentDate" id="date" class="text-danger"></span>
+
+        </div>
+
+
+    </div>
+    <div class="form-group col-sm-12 rounded-left">
+        <label asp-for="Description"></label>
+        <textarea class="form-control" rows="2" asp-for="Description"></textarea>
+    </div>
+    <div class="form-group">
+        <img src="~/css/ajax-loader.gif" id="spinner" />
+        <button type="submit" class="form-control btn btn-success rounded submit px-3" id="btnsave">ذخیره</button>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        $('#spanDateAccount').MdPersianDateTimePicker({
+            targetTextSelector: '#PaymentDate'
+
+        });
+        $('#spinner').hide();
+    });
+
+    $("#frmAddPaymentAccount").on('submit', function (e) {
+        e.preventDefault();
+
+        $('#btnsave').hide();
+        $('#spinner').show();
+        
+        $.ajax({
+            type: 'POST',
+            url: "/Payment/AddPaymentAccount",
+            data: $('#frmAddPaymentAccount').serialize(),
+            success: function (response) {
+                if (response.status) {
+
+
+                    $("#frm-add-transaction").submit();
+
+                }
+                else {
+
+                    $("#amount").html("مبلغ را وارد کنید");
+
+                    $("#date").html("تاریخ را وارد کنید");
+                }
+
+
+            },
+
+            error: function (xhr, status, error) {
+              
+            }
+
+        }).always(function () {
+
+
+            $('#btnsave').show();
+            $('#spinner').hide();
+            $('#frmAddPaymentAccount').find("input[type=text], textarea").val("");
+
+
+        });
+
+    });
+</script>
+

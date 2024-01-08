@@ -1,0 +1,58 @@
+﻿@model DeleteBenefitViewModel
+@{
+
+    ViewData["Title"] = "حذف حساب سود";
+}
+<section class="sign-in-page ">
+    <div class="container p-0">
+        <div class="row no-gutters">
+            <div class="col-sm-12 align-self-center">
+
+                <div class="sign-in-from bg-white">
+                   
+                    <p>از حذف این حساب اطمینان دارید؟</p>
+
+                    <div class="form-group">
+                        <b><label asp-for="Dexcription"></label>:</b> @Model.Dexcription
+                    </div>
+
+
+
+                    @if (!Model.AllowDelete)
+                    {
+
+                        <div class="form-group">
+                            <b><label asp-for="Message"></label> :</b> <div class="alert alert-danger">@Model.Message</div>
+                        </div>
+                    }
+                    @if (Model.AllowDelete)
+                    {
+
+                        <div class="d-inline-block w-100">
+                            <form asp-action="DeleteConfirm" asp-controller="Benefit" method="post">
+                                <input type="hidden" asp-for="Id" />
+                                <button type="submit" class="btn btn-danger float-right">حذف</button>
+
+                                <button asp-action="List" asp-controller="Benefit" class="btn btn-secondary float-right">انصراف</button>
+
+                            </form>
+                        </div>
+                    }
+                    else
+                    {
+
+                        <div class="d-inline-block w-100">
+
+
+                            <button asp-action="List" asp-controller="Benefit" class="btn btn-secondary float-right">انصراف</button>
+
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

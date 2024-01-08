@@ -1,0 +1,178 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controller\**" />
+    <Compile Remove="Models\**" />
+    <Content Remove="Controller\**" />
+    <Content Remove="Models\**" />
+    <EmbeddedResource Remove="Controller\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Controller\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Customer\List.cshtml~RF2239e123.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Properties\launchSettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CurrieTechnologies.Razor.SweetAlert2" Version="5.0.1" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.0" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="PersianDateTime.Core" Version="1.0.8" />
+    <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.2.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.6.0" />
+    <PackageReference Include="SweetAlert" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\FamilyLoan.Core.ApplicationServices\FamilyLoan.Core.ApplicationServices.csproj" />
+    <ProjectReference Include="..\FamilyLoan.Infra.DAL.Command\FamilyLoan.Infra.DAL.Command.csproj" />
+    <ProjectReference Include="..\FamilyLoan.Infra.DAL.Messages\FamilyLoan.Infra.DAL.Messages.csproj" />
+    <ProjectReference Include="..\FamilyLoan.Infra.DAL.Query\FamilyLoan.Infra.DAL.Query.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\libs\MD.BootstrapPersianDateTimePicker-master-bs4\.gitattributes" />
+    <None Include="wwwroot\libs\MD.BootstrapPersianDateTimePicker-master-bs4\.gitignore" />
+    <None Include="wwwroot\libs\MD.BootstrapPersianDateTimePicker-master-bs4\.jshintrc" />
+    <None Include="wwwroot\libs\MD.BootstrapPersianDateTimePicker-master-bs4\dist\jquery.md.bootstrap.datetimepicker.js" />
+    <None Include="wwwroot\libs\MD.BootstrapPersianDateTimePicker-master-bs4\dist\jquery.md.bootstrap.datetimepicker.js.map" />
+    <None Include="wwwroot\libs\MD.BootstrapPersianDateTimePicker-master-bs4\dist\jquery.md.bootstrap.datetimepicker.style.css.map" />
+    <None Include="wwwroot\libs\MD.BootstrapPersianDateTimePicker-master-bs4\README.md" />
+    <None Include="wwwroot\libs\MD.BootstrapPersianDateTimePicker-master-bs4\src\jquery.md.bootstrap.datetimepicker.js" />
+    <None Include="wwwroot\libs\MD.BootstrapPersianDateTimePicker-master-bs4\webpack.config.js" />
+    <None Include="wwwroot\modal\css\.DS_Store" />
+    <None Include="wwwroot\modal\css\bootstrap\.DS_Store" />
+    <None Include="wwwroot\modal\css\bootstrap\mixins\.DS_Store" />
+    <None Include="wwwroot\modal\fonts\.DS_Store" />
+    <None Include="wwwroot\modal\fonts\ionicons\css\_ionicons.scss" />
+    <None Include="wwwroot\modal\fonts\ionicons\fonts\.DS_Store" />
+    <None Include="wwwroot\modal\fonts\ionicons\fonts\ionicons.svg" />
+    <None Include="wwwroot\modal\fonts\ionicons\fonts\ionicons.woff2" />
+    <None Include="wwwroot\modal\images\.DS_Store" />
+    <None Include="wwwroot\modal\js\.DS_Store" />
+    <None Include="wwwroot\modal\js\bootstrap.min.js" />
+    <None Include="wwwroot\modal\js\jquery.min.js" />
+    <None Include="wwwroot\modal\js\main.js" />
+    <None Include="wwwroot\modal\js\popper.js" />
+    <None Include="wwwroot\modal\scss\.DS_Store" />
+    <None Include="wwwroot\modal\scss\bootstrap\.DS_Store" />
+    <None Include="wwwroot\modal\scss\bootstrap\bootstrap-grid.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\bootstrap-reboot.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\bootstrap.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_alert.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_background-variant.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_badge.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_border-radius.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_box-shadow.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_breakpoints.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_buttons.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_caret.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_clearfix.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_deprecate.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_float.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_forms.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_gradients.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_grid-framework.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_grid.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_hover.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_image.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_list-group.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_lists.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_nav-divider.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_pagination.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_reset-text.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_resize.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_screen-reader.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_size.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_table-row.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_text-emphasis.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_text-hide.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_text-truncate.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_transition.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\mixins\_visibility.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_align.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_background.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_borders.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_clearfix.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_display.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_embed.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_flex.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_float.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_overflow.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_position.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_screenreaders.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_shadows.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_sizing.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_spacing.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_stretched-link.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_text.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\utilities\_visibility.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\vendor\_rfs.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_alert.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_badge.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_breadcrumb.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_button-group.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_buttons.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_card.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_carousel.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_close.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_code.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_custom-forms.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_dropdown.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_forms.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_functions.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_grid.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_images.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_input-group.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_jumbotron.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_list-group.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_media.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_mixins.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_modal.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_nav.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_navbar.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_pagination.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_popover.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_print.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_progress.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_reboot.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_root.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_spinners.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_tables.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_toasts.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_tooltip.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_transitions.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_type.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_utilities.scss" />
+    <None Include="wwwroot\modal\scss\bootstrap\_variables.scss" />
+    <None Include="wwwroot\modal\scss\style.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Payment\_DeletePaymentAccount.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Payment\_DeletePaymentAccount.cshtml" />
+  </ItemGroup>
+
+</Project>

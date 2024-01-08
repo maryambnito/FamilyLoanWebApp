@@ -1,0 +1,62 @@
+﻿@model UpdateMoeinViewModel
+@{
+
+    ViewData["Title"] = "ویرایش ";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                    <div class="iq-header-title">
+                        <h4 class="card-title">ویرایش مشتری</h4>
+                    </div>
+                </div>
+                <div class="iq-card-body">
+                    <div class="new-user-info">
+                        <form asp-action="Update" method="post">
+                            
+                            <input type="hidden" asp-for="Id" />
+
+                            <div class="row">
+
+
+                                <div class="form-group col-md-12">
+                                    <label asp-for="Description"></label>
+                                    <textarea class="form-control" placeholder="توضیحات" rows="2" asp-for="Description"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+
+                                </div>
+
+                                <hr />
+
+
+
+
+
+                            </div>
+
+
+
+
+                            <hr>
+
+                            <button type="submit" class="btn btn-warning mb-3">
+                                <i class="ri-brush-fill ml-2"></i>ویرایش
+                            </button>
+
+                            <button asp-controller="Moein" asp-action="List"
+                               class="btn btn-secondary mb-3"><i class="ri-refresh-fill ml-2"></i>انصراف</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

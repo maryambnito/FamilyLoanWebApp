@@ -1,0 +1,116 @@
+﻿
+    <div class="iq-sidebar-logo d-flex justify-content-between">
+        <a href="#">
+            <img src="images/logo.gif" class="img-fluid" alt="">
+            <span>صندوق</span>
+        </a>
+        <div class="iq-menu-bt align-self-center">
+            <div class="wrapper-menu">
+                <div class="line-menu half start"></div>
+                <div class="line-menu"></div>
+                <div class="line-menu half end"></div>
+            </div>
+        </div>
+    </div>
+    <div id="sidebar-scrollbar">
+        <nav class="iq-sidebar-menu">
+            <ul id="iq-sidebar-toggle" class="iq-menu">
+                <li class="iq-menu-title"><i class="ri-separator"></i><span></span></li>
+                <li class="active">
+                    <a asp-action="Index" asp-controller="Home">
+                        <i class="las la-home"></i>
+                        <span>داشبورد</span>
+                    </a>
+
+                </li>
+                <li>
+                    <a asp-action="List" asp-controller="Benefit">
+                        <i class="las la-cloud-moon"></i>
+                        <span>حساب واریز سود</span>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="las la-sun"></i>
+                        <span>قرعه کشی</span>
+                    </a>
+
+                </li>
+
+                <li>
+                    <a href="#mailbox" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false">
+                        <i class="las la-user-tie"></i>
+                        <span>اعضا</span>
+                        <i class="ri-arrow-left-s-line iq-arrow-left">
+                        </i>
+                    </a>
+                    <ul id="mailbox" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li><a asp-controller="Customer" asp-action="Add">افزودن عضو جدید</a></li>
+                        <li><a asp-controller="Customer" asp-action="List">لیست اعضا</a></li>
+
+                    </ul>
+                </li>
+                <li>
+
+
+                    <a href="#dashboard" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false">
+                        <i class="las la-file-contract"></i>
+                        <span>مدیریت حساب ها</span>
+                        <i class="ri-arrow-left-s-line iq-arrow-left">
+                        </i>
+                    </a>
+                    <ul id="dashboard" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li><a asp-controller="Account" asp-action="Add">افزودن حساب جدید</a></li>
+                        <li><a asp-controller="Account" asp-action="List">لیست حساب ها</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#forms" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="las la-sms"></i><span>مدیریت وام ها</span><i class="ri-arrow-left-s-line iq-arrow-left"></i></a>
+                    <ul id="forms" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li><a asp-controller="Loan" asp-action="Add"><span>افزودن وام جدید</span>  </a> </li>
+                        <li><a asp-controller="Loan" asp-action="List"><span>لیست وام ها</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#ui-elements" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="lab la-elementor"></i><span>عملیات</span><i class="ri-arrow-left-s-line iq-arrow-left"></i></a>
+                    <ul id="ui-elements" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li><a asp-controller="Payment" asp-action="Transaction">تراکنش های وام و حساب</a></li>
+                        <li><a asp-controller="Benefit" asp-action="BenefitTransaction">تراکنش های سود</a></li>
+                        <li><a asp-controller="Moein" asp-action="List"> دفتر معین جزء</a></li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#ecommerce" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="las la-file-alt"></i><span>گزارش گیری</span><i class="ri-arrow-left-s-line iq-arrow-left"></i></a>
+                    <ul id="ecommerce" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+
+                        <li><a asp-controller="Report" asp-action="DaftarKol">دفتر کل</a></li>
+                        <li><a asp-controller="Report" asp-action="LoansAndAccountsList">گزارش معین کل</a></li>
+                        <li><a asp-controller="Report" asp-action="LoansLists">گزارش وام ها</a></li>
+                        <li><a asp-controller="Report" asp-action="AccountsLists"><span>گزارش حساب ها</span></a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#user-info" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false">
+                        <i class="las la-file-contract"></i><span>مدیریت کاربران</span><i class="ri-arrow-left-s-line iq-arrow-left"></i>
+                    </a>
+                    <ul id="user-info" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li><a href="profile-edit.html">پروفایل</a></li>
+                        <li><a href="profile-edit.html">ویرایش کاربر</a></li>
+                        <li><a asp-action="List" asp-controller="User">افزودن کاربر</a></li>
+                        <li><a href="user-list.html">لیست کاربران</a></li>
+                    </ul>
+                </li>
+
+
+            </ul>
+            
+        </nav>
+        <div class="p-3"></div>
+    </div>
+
+      

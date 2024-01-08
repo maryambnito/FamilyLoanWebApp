@@ -1,0 +1,66 @@
+﻿@model DeleteCustomerViewModel
+@{
+
+    ViewData["Title"] = "حذف مشتری";
+}
+<section class="sign-in-page ">
+    <div class="container p-0">
+        <div class="row no-gutters">
+            <div class="col-sm-12 align-self-center">
+
+                <div class="sign-in-from bg-white">
+                   
+                    <p>از حذف این مخاطب اطمینان دارید؟</p>
+
+                    <div class="form-group">
+                        <b><label asp-for="FirstName"></label>:</b> @Model.FirstName
+                    </div>
+                    <div class="form-group">
+                        <b><label asp-for="LastName"></label> :</b> @Model.LastName
+                    </div>
+                    <div class="form-group">
+                        <b><label asp-for="NationalCode"></label> :</b> @Model.NationalCode
+                    </div>
+
+
+
+                    @if (!Model.AllowDelete)
+                    {
+
+                        <div class="form-group">
+                            <b><label asp-for="Message"></label> :</b> <div class="alert alert-danger">@Model.Message</div>
+                        </div>
+                    }
+                    @if (Model.AllowDelete)
+                    {
+
+                        <div class="d-inline-block w-100">
+                            <form asp-action="DeleteConfirm" asp-controller="Customer" method="post">
+                                <input type="hidden" asp-for="Id" />
+                                <button type="submit" class="btn btn-danger float-right">حذف</button>
+
+                                <a asp-action="List" asp-controller="Customer" 
+                                        class="btn btn-secondary float-right">انصراف</a>
+
+                            </form>
+                        </div>
+                    }
+                    else
+                    {
+
+                        <div class="d-inline-block w-100">
+
+
+                            <a asp-action="List" asp-controller="Customer"
+                                    class="btn btn-secondary float-right">انصراف</a>
+
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

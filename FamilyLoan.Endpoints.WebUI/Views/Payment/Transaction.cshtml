@@ -1,0 +1,342 @@
+﻿@model CreatePaymentViewModel
+@{
+    ViewData["Title"] = "تراکنش ها";
+}
+@section head
+{
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="iq-card">
+            <div class="iq-card-body p-0">
+                <div class="iq-edit-list">
+
+                    <ul class="iq-edit-profile d-flex nav nav-pills transactionUl">
+                        <li class="col-md-3 p-0">
+                            <a class="nav-link active" data-toggle="pill" href="#Account-information">
+                                تراکنش های حساب
+                            </a>
+                        </li>
+                        <li class="col-md-3 p-0">
+                            <a class="nav-link" data-toggle="pill" href="#Loan-information">
+                                تراکنش های وام
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="iq-edit-list-data">
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="Account-information" role="tabpanel">
+                    <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title">تراکنش های حساب</h4>
+                            </div>
+                        </div>
+                        <div class="iq-card-body">
+                            <form id="frm-add-transaction">
+                                <div class=" row align-items-center">
+                                    @{ List<int> selectedCustomer = (List<int>)ViewBag.SelectedItem; }
+
+                                    <div class="form-group col-sm-6">
+                                        <label asp-for="CustomerList"></label>
+                                        <select class="form-control " asp-for="CustomerId">
+                                            <option selected="">لطفا مشتری را انتخاب کنید</option>
+                                            @foreach (var item in Model.CustomerList)
+                                            {
+                                                if (ViewBag.SelectedItem != null && selectedCustomer.Contains(item.Id))
+                                                {
+                                                    <option selected value="@item.Id">@item.FirstName -@item.LastName</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.Id">@item.FirstName -@item.LastName</option>
+                                                }
+                                            }
+
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-sm-6">
+                                        <label asp-for="AccountId"></label>
+                                        <select class="form-control " asp-for="AccountId">
+                                            <option selected="">لطفا حساب را انتخاب کنید</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>از تاریخ</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text cursor-pointer "
+                                                      id="spanDateAccountAmount">تاریخ</span>
+                                            </div>
+                                            <input type="text" asp-for="FromDate" class="form-control">
+
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="form-group col-sm-6">
+                                        <label>تا تاریخ</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text cursor-pointer "
+                                                      id="spanDateAccountAmount2">تاریخ</span>
+                                            </div>
+                                            <input type="text" asp-for="ToDate" class="form-control">
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                <div id="btndiv">
+
+
+                                    <button id="addbtn" onclick="showModal(@Model.AccountId, 'افزودن تراکنش')"
+                                       class="btn btn-success mb-3" data-toggle="modal"
+                                       asp-route-Id="@Model.AccountId" data-target="#AddAccountModal">
+                                        <i class="ri-save-2-fill ml-2"></i>افزودن
+                                    </button>
+
+
+
+
+                                    <button type="submit" class="btn btn-info mb-3 ml-0">
+                                        <i class="ri-search-2-fill ml-2"></i>جستجو
+                                    </button>
+
+                                </div>
+                                <div class="col-md-12" id="totalDivs">
+                                    <div class="iq-card py-2 px-3">
+                                        <div class="row">
+                                            <div class="align-self-center d-flex col-lg-8 col-6">
+
+                                                <h4>جمع کل</h4>
+
+                                            </div>
+                                            <div class="col-lg-4 col-6">
+                                                <div class="d-flex justify-content-between">
+                                                    <div id="sort-by" class="iq-algolia-sort">
+                                                        <div class="ais-SortBy iq-algolia-sort  " style="display:inline-flex">
+                                                            <h6 readonly id="totalAmount"></h6>
+                                                            <h6 readonly>ریال</h6>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="PaymentAccountListTbl">
+
+
+
+
+
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Loan-information" role="tabpanel">
+                    <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title"> تراکنش های وام</h4>
+                            </div>
+                        </div>
+                        <div class="iq-card-body">
+                            <form id="frm-loan-installment">
+                                <div class=" row align-items-center">
+
+
+
+                                    <div class="form-group col-sm-12">
+                                        <label asp-for="LoanId"></label>
+                                        <select class="form-control " asp-for="LoanId">
+                                            <option selected="">لطفا حساب وام را انتخاب کنید</option>
+                                        </select>
+                                    </div>
+
+
+
+
+                                    <div class="form-group col-sm-6">
+                                        <label>از تاریخ</label>
+                                        <div class="input-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text cursor-pointer " id="spanDateLoansAmount">تاریخ</span>
+                                                </div>
+                                                <input type="text" asp-for="FromDateLoan" class="form-control">
+
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>تا تاریخ</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text cursor-pointer " id="spanDateLoansAmount2">تاریخ</span>
+                                            </div>
+                                            <input type="text" asp-for="ToDateLoan" class="form-control">
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                    <div id="btndiv">
+
+
+                                        <button id="addinstallmentbtn" onclick="modal(@Model.LoanId, 'افزودن قسط')"
+                                           class="btn btn-success mb-3" data-toggle="modal"
+                                           asp-route-Id="@Model.LoanId" data-target="#AddInstallmentModal">
+                                            <i class="ri-save-2-fill ml-2"></i>افزودن
+                                        </button>
+
+
+
+
+                                        <button type="submit" class="btn btn-info mb-3 ml-0 " id="searchLoan">
+                                            <i class="ri-search-2-fill ml-2"></i>جستجو
+                                        </button>
+
+
+                                    </div>
+
+
+
+                                    <div class="col-md-12" id="totalloans">
+                                        <div class="iq-card py-2 px-3">
+                                            <div class="row">
+                                                <div class="align-self-center d-flex col-lg-4 col-3">
+
+                                                    <h4>جمع اقساط</h4>
+
+                                                </div>
+                                                <div class="col-lg-2 col-3">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div id="sort-by" class="iq-algolia-sort">
+                                                            <div class="ais-SortBy iq-algolia-sort  " style="display:inline-flex">
+                                                                <h6 readonly id="totalInstallment"></h6>
+                                                                <h6 readonly>ریال</h6>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                    <div class="align-self-center d-flex col-lg-4 col-3">
+
+                                                    <h4>مانده وام</h4>
+
+                                                </div>
+                                                <div class="col-lg-2 col-3">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div id="sort-by" class="iq-algolia-sort">
+                                                            <div class="ais-SortBy iq-algolia-sort  " style="display:inline-flex">
+                                                                <h6 readonly id="remainingloan"></h6>
+                                                                <h6 readonly>ریال</h6>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                          
+
+                                    </div>
+
+                                    <div id="LoanListTbl">
+
+                                    </div>
+                               
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade " id="AddAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="ion-ios-close"></span>
+                </button>
+                <h6 class="text-center mb-4">افزودن تراکنش</h6>
+            </div>
+            <div class="modal-body p-4 p-md-5">
+                <div id='ModalContent'>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade " id="AddInstallmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="ion-ios-close"></span>
+                </button>
+                <h6 class="text-center mb-4">افزودن قسط</h6>
+            </div>
+            <div class="modal-body p-4 p-md-5">
+                <div id='ModalInstallmentContent'>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="~/Controllers/Payments/TransactionJs.js"></script>
+
+}

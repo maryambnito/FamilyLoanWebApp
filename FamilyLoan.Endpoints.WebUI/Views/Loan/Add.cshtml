@@ -1,0 +1,82 @@
+﻿@model CreateLoanVIewModel
+@{
+    
+    ViewData["Title"] = "افزودن وام";
+}
+@section head
+{
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+}
+<div class="iq-card">
+
+    <div class="iq-card-header d-flex justify-content-between">
+        <div class="iq-header-title">
+            <h4 class="card-title">افزودن وام جدید</h4>
+        </div>
+    </div>
+    <div class="iq-card-body">
+
+        <form asp-action="Add" asp-controller="Loan" method="post">
+
+            <div class="form-group">
+                <label asp-for="LoanAmount "></label>
+
+                <input type="text" class="form-control text-danger text-bold amounts" value=" " asp-for="LoanAmount">
+                <span asp-validation-for="LoanAmount" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LoanDateStart"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text cursor-pointer" id="spanLoanDateStart">تاریخ</span>
+                    </div>
+                    <input type="text" class="form-control" asp-for="LoanDateStart" value="1400/01/01">
+                    <span asp-validation-for="LoanDateStart" class="text-danger"></span>
+
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Description">توضیحات</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" asp-for="Description"></textarea>
+            </div>
+            @{ List<int> selectedCustomer = (List<int>)ViewBag.SelectedItem; }
+
+        <div class="form-group">
+            <label asp-for="CustomerForDisplay"></label>
+            <select class="form-control select2" asp-for="CustomerId">
+                <option selected="">لطفا مشتری را انتخاب کنید</option>
+                @foreach (var item in Model.CustomerForDisplay)
+                {
+                    if (ViewBag.SelectedItem != null && selectedCustomer.Contains(item.Id))
+                    {
+                        <option selected value="@item.Id">@item.FirstName -@item.LastName</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">@item.FirstName -@item.LastName</option>
+                    }
+                }
+
+            </select>
+            <span asp-validation-for="CustomerId" class="text-danger"></span>
+
+        </div>
+            <button type="submit" class="btn btn-success mb-3 ml-0 mb-2"><i class="ri-save-fill ml-2"></i>افزودن</button>
+            <button asp-controller="Loan" asp-action="List" class="btn btn-secondary mb-3">
+            <i class="ri-refresh-fill ml-2"></i>انصراف</button>
+
+        </form>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="~/Controllers/Loans/LoanJS.js"></script>
+  
+}

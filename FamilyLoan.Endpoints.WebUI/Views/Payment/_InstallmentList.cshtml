@@ -1,0 +1,104 @@
+﻿@model List<InstallmentDTO>
+<table class="table table-striped table-bordered mt-4" role="grid" aria-describedby="user-list-page-info">
+    <thead class="thead-dark">
+        <tr>
+            <th>شماره قسط</th>
+            <th id="datetimeth">  تاریخ قسط</th>
+            <th> مبلغ قسط </th>
+
+
+            <th>عملیات</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.InstallmentNumber</td>
+                <td>@item.InstallmentDate</td>
+                <td class="amounts">@item.InstallmentAmount.SeparatorNum()</td>
+
+
+
+
+
+                <td>
+                    <button onclick="DeleteInstallment(@item.Id)" class="btn btn-sm btn-outline-danger mb-3 ">
+                        <i class="ri-delete-bin-2-fill pr-0"></i>
+                    </button>
+                    <a onclick="DetailsInstallment(@item.Id)" class="btn btn-sm btn-outline-info mb-3">
+                        <i class="ri-alipay-fill  pr-0"></i>
+                    </a>
+
+                </td>
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>
+
+
+
+<div class="modal fade " id="DetailsInstallmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="text-center mb-4">جزییات تراکنش</h6>
+                <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="ion-ios-close"></span>
+                </button>
+
+            </div>
+            <div class="modal-body p-4 p-md-5">
+                <div id='DetailsInstallmentContent'>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function DeleteInstallment(Id) {
+
+
+
+        Swal.fire({
+            title: 'حذف قسط',
+            text: "از حذف قسط اطمینان دارید؟",
+            icon: 'هشدار',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'انصراف',
+            confirmButtonText: 'حذف'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post("DeleteInstallment?id=" + Id).done(function (data) {
+                    Swal.fire(
+                        'توجه',
+                        'اطلاعات حذف شد!',
+                        'عملیات با موفقیت انجام شد'
+                    )
+                    $("#frm-loan-installment").submit();
+                });
+            }
+        });
+
+
+    }
+    function DetailsInstallment(Id) {
+        $.get("DetailsInstallment?id=" + Id).done(function (data) {
+
+            $('#DetailsInstallmentContent').html(data);
+
+
+            $('#DetailsInstallmentModal').modal();
+        });
+    }
+
+</script>
