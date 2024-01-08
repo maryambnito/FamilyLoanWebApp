@@ -1,1 +1,1 @@
-# myproject
+# FamilyLoan is my first real project I used C# ,Js and CQRS architecht pattern  ,some parts of this project I needed complicated reports so I used Dapper on it also I tried have propare layering on it ,I wrote Pagination and used MediatR.In deed it is a little sample of Bank application that works on the web .  
